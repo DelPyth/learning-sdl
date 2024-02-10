@@ -21,3 +21,4 @@ if (x == 5) {
   printf("Correct Styling\n");
 }
 ```
+- I prefer to use `bool` as much as I can unless needing to specify beyond the bound of two numbers.
