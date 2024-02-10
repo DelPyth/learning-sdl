@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
   SDL_Window* window = SDL_CreateWindow("SDL2 Window",
       SDL_WINDOWPOS_CENTERED,
       SDL_WINDOWPOS_CENTERED,
-      640, 640, 0);
+      640, 640, 0);  //! TODO: magic numbers, change later
 
   if (window == NULL) {
     perrorf("Could not create window: %s\n", SDL_GetError());
@@ -39,25 +39,25 @@ int main(int argc, char* argv[]) {
     return true;
   }
 
-  SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
+  SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);  //! TODO: magic numbers, change later
 
   // Draw some text
-  SDL_Color color = {255, 255, 255, 255};
+  SDL_Color color = {255, 255, 255, 255};  //! TODO: magic numbers, change later
 
   if (TTF_Init() == -1) {
     perrorf("TTF_Init: %s\n", TTF_GetError());
     return 1;
   }
 
-  char font_path[1024];
-  char* cwd = (char*)malloc(1024);
+  char font_path[MAX_PATH];
+  char* cwd = (char*)malloc(MAX_PATH);
   if (!workingDir(cwd)) {
     perrorf("Could not set working directory\n");
     return 1;
   }
   sprintf(font_path, "%s\\assets\\ubuntu.ttf", cwd);
 
-  TTF_Font* font = TTF_OpenFont(font_path, 24);
+  TTF_Font* font = TTF_OpenFont(font_path, 24);  //! TODO: magic number, change later
   if (font == NULL) {
     perrorf("TTF_OpenFont: %s\n", TTF_GetError());
     return 1;
@@ -66,6 +66,7 @@ int main(int argc, char* argv[]) {
   SDL_Surface* surface = TTF_RenderText_Solid(font, "Hello, World!", color);
   SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
+  //! TODO: Remake this to center out in the window instead of hardcoding the position
   SDL_Rect textRect;
   textRect.x = 320 - surface->w / 2;
   textRect.y = 320 - surface->h / 2;
@@ -75,8 +76,6 @@ int main(int argc, char* argv[]) {
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, &textRect);
   SDL_RenderPresent(renderer);
-
-  // SDL_RenderClear(renderer);
 
   SDL_FreeSurface(surface);
   SDL_DestroyTexture(texture);
