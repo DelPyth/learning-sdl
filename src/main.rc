@@ -1,4 +1,4 @@
-10 ICON "target/assets/prog.ico"
+10 ICON "assets/prog.ico"
 
 1 VERSIONINFO
 FILEVERSION     1,0,0,0
@@ -8,12 +8,12 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
-      VALUE "FileDescription", "A simple program."
+      VALUE "FileDescription", "A simple game."
       VALUE "FileVersion", "1.0"
-      VALUE "InternalName", "my_app"
-      VALUE "LegalCopyright", "My Name"
+      VALUE "InternalName", "some_game"
+      VALUE "LegalCopyright", "DelPyth"
       VALUE "OriginalFilename", "main.exe"
-      VALUE "ProductName", "SimpleProg"
+      VALUE "ProductName", "SomeGame"
       VALUE "ProductVersion", "1.0"
     END
   END

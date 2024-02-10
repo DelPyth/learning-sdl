@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include <stdbool.h>
+
+#pragma once
 
 /**
  * Sets the working directory to the directory of the executable
@@ -35,4 +38,22 @@ bool workingDir(char* path) {
 
   // If all passed, return true
   return true;
+}
+
+
+/**
+ * Prints a formatted error message to stderr
+ *
+ * \param msg The message to print
+ * \param ... The arguments to format the message with
+ * \return void
+*/
+void perrorf(char* msg, ...);
+
+void perrorf(char* msg, ...) {
+  va_list args;
+  va_start(args, msg);
+  vfprintf(stderr, msg, args);
+  va_end(args);
+  return;
 }

@@ -17,6 +17,8 @@ all: clean $(TARGET)\main.exe
 
 $(TARGET)\main.exe: $(SRC)\main.c
 	$(CC) -o $@ $^ $(CFLAGS)
+	cp $(LIB)\SDL2\lib\x64\SDL2.dll $(TARGET)
+	cp $(LIB)\SDL2_ttf\lib\x64\SDL2_ttf.dll $(TARGET)
 
 clean:
 	del /q $(TARGET)\*.exe 2>nul
