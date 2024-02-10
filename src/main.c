@@ -17,10 +17,11 @@ void perrorf(char* msg, ...) {
   return;
 }
 
-bool sdlStartup(struct SDL_Renderer* renderer, struct SDL_Window* window) {
+int main(int argc, char* argv[]) {
+  // Initialize SDL and create a window
   SDL_Init(SDL_INIT_VIDEO);
 
-  window = SDL_CreateWindow("SDL2 Window",
+  SDL_Window* window = SDL_CreateWindow("SDL2 Window",
       SDL_WINDOWPOS_CENTERED,
       SDL_WINDOWPOS_CENTERED,
       640, 640, 0);
@@ -30,29 +31,13 @@ bool sdlStartup(struct SDL_Renderer* renderer, struct SDL_Window* window) {
     return true;
   }
 
-  renderer = SDL_CreateRenderer(window, -1,
+  SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,
       SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
   if (renderer == NULL) {
     perrorf("Could not create renderer: %s\n", SDL_GetError());
     return true;
   }
-
-  return false;
-}
-
-int main(int argc, char* argv[]) {
-  // Initialize SDL and create a window
-  SDL_Renderer* renderer = NULL;
-  SDL_Window* window = NULL;
-
-  if (sdlStartup(renderer, window)) {
-    return 1;
-  }
-
-  // Now we create a starting screen
-  // TODO: ...
-
 
   SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
 
